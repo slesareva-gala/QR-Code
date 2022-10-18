@@ -1,5 +1,5 @@
 <h1 align="center">QRCreator.js</h1>
-QRCreator.js — это скрипт на чистом javascript для создания QR-кода.  
+QRCreator.js — это скрипт на чистом javascript для создания QR-кода  
 
 <p align="center">
 <img src="https://github.com/slesareva-gala/forCodePen/blob/master/gif/demo_QRCreator.gif" width="80%"></p>
@@ -69,18 +69,18 @@ document.getElementById('qrcode2').append( 'QR-код № 2: ', content(qrcode2)
 
 <h2>СИНТАКСИС</h2>
 
-      **window.QRCreator(text[,options])**
+      `window.QRCreator( text [, options ] )`
   
       или
   
-      **QRCreator(text[,options])**
+      `QRCreator( text [, options ] )1
 
 ### Параметры
 
-   **text**
+   **text**  
      Кодируемая текстовая строка UTF-8
 
-   **options**
+   **options**  
      Объект, содержащий свойства со значениями параметров генерации QR-кода,
       по умолчанию:
       `{mode: -1,  eccl: 0, version: -1, mask: -1, format: 'PNG', modsize: -1, margin: -1}`
