@@ -184,12 +184,12 @@ MIT License. Код может быть использован для любых
 
 <br>
 <h2>СОВМЕСТИМОСТЬ С БРАУЗЕРАМИ</h2>
-Chrome (v.106), Firefox (v.105), Яндекс.Браузер (v.22), Brave (v.1.44), Microsoft Edge (v.106)
+Chrome v.106, Firefox v.105, Яндекс.Браузер v.22, Brave v.1.44, Microsoft Edge v.106
 
 <br>
 <h2>ПОЛЕЗНЫЕ ССЫЛКИ</h2>
 
-__Прообраз от Кана Сонуна: [qrcode.js](https://github.com/shesek/qruri/blob/master/index.js)__
+__Прообраз от Кана Сонуна [qrcode.js](https://github.com/shesek/qruri/blob/master/index.js)__
 
 
 __Замечательное пособие__ [QR Code Tutorial](https://www.thonky.com/qr-code-tutorial/introduction)
