@@ -1,0 +1,15 @@
+{
+  "indent": 2,
+  "undef": true,
+  "quotmark": false,
+  "maxlen": 120,
+  "trailing": true,  
+  "strict": true,
+  "browser": true,
+  "devel": true,
+  "jquery": true,
+  "esversion": 11,
+  "eqeqeq": true,
+  "latedef": "nofunc",
+  "node": true
+}

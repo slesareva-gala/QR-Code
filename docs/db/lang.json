@@ -1,0 +1,143 @@
+{
+  "lang_dictionary": [{
+    "title": {
+      "rus": "Генератор QR-кода",
+      "eng": "QR Code Generator"
+    },
+    "head-1": {
+      "rus": "ГЕНЕРАТОР",
+      "eng": "QR"
+    },
+    "head-2": {
+      "rus": "QR",
+      "eng": "CODE"
+    },
+    "head-3": {
+      "rus": "КОДА",
+      "eng": "GENERATOR"
+    },
+    "btn-create": {
+      "rus": "генерировать",
+      "eng": "generate"
+    },
+    "btn-cancel": {
+      "rus": "отменить",
+      "eng": "cancel"
+    },
+    "main-text": {
+      "rus": "Текст для кодирования",
+      "eng": "Text to encoding"
+    },
+    "main-params": {
+      "rus": "Параметры генерации QR-кода",
+      "eng": "QR code generation parameters"
+    },
+    "param-mode": {
+      "rus": "метод кодирования",
+      "eng": "encoding modes"
+    },
+    "param-eccl": {
+      "rus": "уровень коррекции ошибок",
+      "eng": "error correction level"
+    },
+    "param-version": {
+      "rus": "версия ( 1 - 40 )",
+      "eng": "version ( 1 - 40 )"
+    },
+    "param-mask": {
+      "rus": "шаблон маски ( 0 - 7 )",
+      "eng": "mask pattern ( 0 - 7 )"
+    },
+    "param-modsize": {
+      "rus": "размер модуля ( n x n )",
+      "eng": "module size  ( n x n )"
+    },
+    "param-margin": {
+      "rus": "свободная зона в модулях",
+      "eng": "quiet zone space in modules"
+    },
+    "vs1": {
+      "rus": "авто",
+      "eng": "auto"
+    },
+    "vs2": {
+      "rus": "ввод",
+      "eng": "user"
+    },
+    "m1": {
+      "rus": "цифровой",
+      "eng": "numerical"
+    },
+    "m2": {
+      "rus": "буквенно-цифровой",
+      "eng": "alphanumeric"
+    },
+    "m4": {
+      "rus": "двоичный (UTF8)",
+      "eng": "binary (UTF8)"
+    },
+    "save-as-title": {
+      "rus": "Сохранить",
+      "eng": "Save"
+    }
+  }],
+
+  "qrcreator_error_message": [{
+    "text-1": {
+      "rus": "недопустимый формат строки для кодирования",
+      "eng": "invalid string format to encoding"
+    },
+    "text-2": {
+      "rus": "не указан текст для кодирования",
+      "eng": "not specified text to encoding"
+    },
+    "text-3": {
+      "rus": "текст содержит недопустимые символы",
+      "eng": "text contains invalid characters"
+    },
+    "mode-1": {
+      "rus": "недопустимый или неподдерживаемый метод кодирования",
+      "eng": "invalid or unsupported encoding method"
+    },
+    "version-1": {
+      "rus": "слишком длинный текст для кодирования",
+      "eng": "encoding too large text"
+    },
+    "version-2": {
+      "rus": "недопустимая версия",
+      "eng": "invalid version"
+    },
+    "version-3": {
+      "rus": "текст слишком длинный для выбранной версии",
+      "eng": "text too large for selected version"
+    },
+    "eccl-1": {
+      "rus": "недопустимый уровень коррекции ошибок",
+      "eng": "invalid error correction level"
+    },
+    "mask-1": {
+      "rus": "недопустимый шаблон маски",
+      "eng": "invalid mask pattern"
+    },
+    "format-1": {
+      "rus": "недопустимый формат для генерации QR-кода",
+      "eng": "invalid format for generation QR code"
+    },
+    "format-2": {
+      "rus": "для вывода в формате PNG необходима поддержка canvas",
+      "eng": "canvas support is needed for PNG output"
+    },
+    "format-3": {
+      "rus": "недопустимый формат для генерации QR-кода",
+      "eng": "invalid format for generation QR code"
+    },
+    "modsize-1": {
+      "rus": "недопустимый размер модуля",
+      "eng": "invalid modul size"
+    },
+    "margin-1": {
+      "rus": "недопустимый размер свободной зоны (в модулях)",
+      "eng": "invalid quiet zone space (in modules)"
+    }
+  }]
+}

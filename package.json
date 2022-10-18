@@ -1,0 +1,19 @@
+{
+  "name": "qr_code_maker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "qrMaker.js",
+  "scripts": {
+    "build": "webpack --mode=production",
+    "watch": "webpack --watch --mode=development",
+    "start": "webpack serve --mode=development --open"
+  },
+  "author": "Gala Slesareva",
+  "license": "ISC",
+  "keywords": [],
+  "devDependencies": {
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.7.4"
+  }
+}
