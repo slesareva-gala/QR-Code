@@ -137,9 +137,9 @@ __<p>`qrcode`.format = newFormat</p>__
 <br>__<p>`qrcode`.download(`filename`, `format`)</p>__ Вызывает скачивание файла с именем `filename` в формате `format`
 
 Если параметр `filename` не задан или `filename === ''`, то `filename` примает значение по умолчанию:
- - `'qrcode.png'` при `qrcode.format === 'PNG'`
- - `'qrcode.svg'` при `qrcode.format === 'SVG'`
- - `'qrcode.html'` при `qrcode.format === 'HTML'`
+ -`'qrcode.png'` при `qrcode.format === 'PNG'`<br>
+ -`'qrcode.svg'` при `qrcode.format === 'SVG'`<br>
+ -`'qrcode.html'` при `qrcode.format === 'HTML'`
 
 >Если параметр `format` не задан, то приниматся текущее значение `qrcode.format`.
 
