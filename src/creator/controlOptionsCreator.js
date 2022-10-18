@@ -119,8 +119,8 @@ export const controlOptionsCreator = (qrcode) => {
     if (qrcode.mask !== -1 && (qrcode.mask < 0 || qrcode.mask > 8 || notInteger(qrcode.mask)))
       throw errorQR('mask', '1');
 
-    // формат результата
-    if (!(constQR.FORMAT.includes(qrcode.format))) throw errorQR('format', '1');
+    // формат изображения
+    if (!(constQR.IMAGE.includes(qrcode.image))) throw errorQR('image', '1');
     // размер модуля n x n, где n > 1
     if (qrcode.modsize === -1) qrcode.modsize = constQR.modsize;
     else if (qrcode.modsize < 1 || notInteger(qrcode.modsize)) throw errorQR('modsize', '1');

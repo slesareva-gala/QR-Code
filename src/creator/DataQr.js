@@ -4,7 +4,7 @@
 import { constQR, infoVersion } from "../lib/iso";
 
 class QRCODE {
-  constructor(format, options, errorDescription) {
+  constructor(image, options, errorDescription) {
 
     for (const param in options) {
       Object.defineProperty(this, param, { enumerable: true, value: options[param] });
@@ -13,19 +13,19 @@ class QRCODE {
       Object.defineProperty(this, param, { writable: true, value: errorDescription[param] });
     }
 
-    // формат QR-кода
-    Object.defineProperty(this, `_format`, { writable: true, value: '' });
-    // QR-код в заданом формате или '' в случае ошибки
+    // формат изображения QR-кода
+    Object.defineProperty(this, `_image`, { writable: true, value: '' });
+    // HTML элемент изображения QR-кода в заданом формате или '' в случае ошибки
     Object.defineProperty(this, `result`, { writable: true, value: '' });
 
     // формирование изображения QR-кода
-    this.format = format;
+    this.image = image;
   }
 
   /*
    * формирование изображения QR-кода
    */
-  set format(v) {
+  set image(v) {
     // формирование изображения QR-кода
     const makeImage = () => {
 
@@ -45,7 +45,7 @@ class QRCODE {
           canvas.width = canvas.height = canvasSize;
           context = canvas.getContext('2d');
           if (!context) {
-            this.error = 'format';
+            this.error = 'image';
             this.errorSubcode = '2';
             return;
           }
@@ -120,29 +120,29 @@ class QRCODE {
           this.result = result;
         }, // END HTML()
 
-      }[this.format])();
+      }[this.image])();
 
     }; // END makeImage()
 
     v = v.trim().toUpperCase();
-    this._format = v;
+    this._image = v;
     this.result = '';
 
-    if (this.error === 'format') this.clearError();
-    if (!(constQR.FORMAT.includes(v))) {
-      this.error = 'format';
+    if (this.error === 'image') this.clearError();
+    if (!(constQR.IMAGE.includes(v))) {
+      this.error = 'image';
       this.errorSubcode = '3';
     }
 
     if (!this.error) makeImage();
 
-  } // END set format()
-  get format() { return this._format; }
+  } // END set image()
+  get image() { return this._image; }
 
   /*
    * скачать файл QR-кода
    */
-  download(filename = '', format = this.format) {
+  download(filename = '', image = this.image) {
     let content = '', mimeType = '';
 
     const perform = (content, mimeType, filename) => {
@@ -154,10 +154,10 @@ class QRCODE {
       el.click();
     };
 
-    this.format = format;
+    this.image = image;
 
     if (this.result) {
-      switch (this.format) {
+      switch (this.image) {
         case 'PNG':
           if (!filename) filename = 'qrcode.png';
           content = this.result.toDataURL();
@@ -193,10 +193,10 @@ class QRCODE {
 
 export class DataQR {
   constructor(text = '', options = {}) {
-    let { mode, eccl, version, mask, format, modsize, margin } = {
+    let { mode, eccl, version, mask, image, modsize, margin } = {
       ...{
         mode: -1, eccl: -1, version: -1, mask: -1,
-        format: 'PNG', modsize: -1, margin: -1
+        image: 'PNG', modsize: -1, margin: -1
       },
       ...options
     };
@@ -209,7 +209,7 @@ export class DataQR {
     this._version = version;
     this.mask = mask;
     // параметры результата:
-    this.format = format.trim().toUpperCase();
+    this.image = image.trim().toUpperCase();
     this.modsize = modsize;
     this.margin = margin;
 
@@ -739,7 +739,7 @@ export class DataQR {
    */
   report() {
     return new QRCODE(
-      this.format,
+      this.image,
       {
         text: this.text,
         mode: this.mode,

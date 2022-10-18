@@ -119,17 +119,17 @@
       "rus": "недопустимый шаблон маски",
       "eng": "invalid mask pattern"
     },
-    "format-1": {
-      "rus": "недопустимый формат для генерации QR-кода",
-      "eng": "invalid format for generation QR code"
+    "image-1": {
+      "rus": "недопустимый формат изображения для генерации QR-кода",
+      "eng": "invalid image format for generation QR code"
     },
-    "format-2": {
+    "image-2": {
       "rus": "для вывода в формате PNG необходима поддержка canvas",
       "eng": "canvas support is needed for PNG output"
     },
-    "format-3": {
-      "rus": "недопустимый формат для генерации QR-кода",
-      "eng": "invalid format for generation QR code"
+    "image-3": {
+      "rus": "недопустимый формат изображения для генерации QR-кода",
+      "eng": "invalid image format for generation QR code"
     },
     "modsize-1": {
       "rus": "недопустимый размер модуля",

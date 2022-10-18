@@ -9,7 +9,7 @@ import { controlOptionsCreator } from "./creator/controlOptionsCreator";
  параметры:
    text - кодируемая текстовая строка UTF-8
    [options], по умолчанию: { mode: -1,  eccl: -1, version: -1, mask: -1,
-                              format: 'PNG', modsize: -1, margin: -1}
+                              image: 'PNG', modsize: -1, margin: -1}
      // - параметры формирования:
      options.mode - метод кодирования: 1 -числовой, 2-буквенно-цифровой, 4-октетный
                если не указан или -1, то выбирается допустимый метод
@@ -21,7 +21,7 @@ import { controlOptionsCreator } from "./creator/controlOptionsCreator";
                 если не указан или -1, то выбирается лучшая маска
 
      // - параметры результата:
-     options.format: - формат результата: регистронезависимая строка:
+     options.image: - формат изображения: регистронезависимая строка:
                 одна из 'PNG', 'SVG','HTML' или 'NONE' (не формировать изображение),
                 если не указан, то результат выводится в формате 'PNG'
      options.modsize: - размер модуля ( modsize x modsize ): целое число больше 1 ,
@@ -34,11 +34,11 @@ import { controlOptionsCreator } from "./creator/controlOptionsCreator";
         // исходный текст
         text,
         // параметры сформированного QR-кода
-        mode, eccl, version, mask, format, modsize, margin,
+        mode, eccl, version, mask, image, modsize, margin,
         // массив - матрица QR-кода в 0-белый, 1-черный
         matrix,
-        // QR-код в заданом формате или '' в случае ошибки
-        // или когда был задан параметр format === 'NONE'
+        // HTML изображения QR-кода в заданом формате или '' в случае ошибки
+        // или когда был задан параметр image === 'NONE'
         result,
         // имя параметра, вызвавшего ошибку или '' при отстутствии ошибок
         // код, код, поясняющий ошибку или '' при отстутствии ошибок

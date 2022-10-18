@@ -83,8 +83,8 @@ export const constQR = {
     DENSITY: 10
   },
 
-  /* форматы вывода */
-  FORMAT: ['PNG', 'SVG', 'HTML', 'NONE'],
+  /* форматы изображений */
+  IMAGE: ['PNG', 'SVG', 'HTML', 'NONE'],
   /* размер модуля */
   modsize: 4,
   /* размер свободной зоны в модулях */

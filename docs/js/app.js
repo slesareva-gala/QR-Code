@@ -174,7 +174,7 @@ const app = (dictionaryPath) => {
     };
 
 
-    if (qrcode && (qrcode.result || qrcode.error === 'format')) {
+    if (qrcode && (qrcode.result || qrcode.error === 'image')) {
       // очищаем ошибки при переходе к вводу параметоров
       if (qrcode.error) {
         qrcode.clearError();
@@ -214,9 +214,9 @@ const app = (dictionaryPath) => {
   const saveAs = (e) => {
     const el = e.target;
     if (el.classList.contains('save-as')) {
-      const format = el.dataset.format;
+      const image = el.dataset.image;
 
-      qrcode.download('proba.' + format, format);
+      qrcode.download('proba.' + image, image);
       messageError(qrcode.error ? qrcode.error + '-' + qrcode.errorSubcode : '');
     }
   };  // END saveAs()
