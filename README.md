@@ -69,25 +69,24 @@ document.getElementById('qrcode2').append( 'QR-код № 2: ', content(qrcode2)
 
 <h2>СИНТАКСИС</h2>
 
-      ``` window.QRCreator( text [, options ] ) ```
+      ```window.QRCreator( text [, options ] )```
   
       или
   
-      ``` QRCreator( text [, options ] ) ```
+      ```QRCreator( text [, options ] )```
 
 ### Параметры
 
-   **text**  
-     Кодируемая текстовая строка UTF-8
+    **text**  
+        Кодируемая текстовая строка UTF-8
 
-   **options**  
-     Объект, содержащий свойства со значениями параметров генерации QR-кода,
-      по умолчанию:
-      `{mode: -1,  eccl: 0, version: -1, mask: -1, format: 'PNG', modsize: -1, margin: -1}`
+    **options**  
+        Объект, содержащий свойства со значениями параметров генерации QR-кода,
+        по умолчанию:  
+        `{mode: -1,  eccl: 0, version: -1, mask: -1, format: 'PNG', modsize: -1, margin: -1}`
 
 ### Возвращаемое значение
     Объект qrcode, описывающий результат генерации QR-кода
-
 
 <h2>ОПИСАНИЕ</h2>
 ### 1. Свойство options
