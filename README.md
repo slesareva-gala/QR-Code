@@ -78,13 +78,13 @@ document.getElementById('qrcode2').append( 'QR-код № 2: ', content(qrcode2)
 
 ### Параметры
 
-    **text**  
-        Кодируемая текстовая строка UTF-8
+**text**  
+    Кодируемая текстовая строка UTF-8
 
-    **options**  
-        Объект, содержащий свойства со значениями параметров генерации QR-кода,
+**options**  
+    Объект, содержащий свойства со значениями параметров генерации QR-кода,
         по умолчанию:  
-        `{mode: -1,  eccl: 0, version: -1, mask: -1, format: 'PNG', modsize: -1, margin: -1}`
+    `{mode: -1,  eccl: 0, version: -1, mask: -1, format: 'PNG', modsize: -1, margin: -1}`
 
 ### Возвращаемое значение
     Объект qrcode, описывающий результат генерации QR-кода
