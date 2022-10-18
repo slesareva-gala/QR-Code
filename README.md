@@ -67,11 +67,14 @@ document.getElementById('qrcode2').append( 'QR-код № 2: ', content(qrcode2)
 
 <h2>СИНТАКСИС</h2>
 
-**`    window.QRCreator( text [, options ] )`**
-  
+```js
+  window.QRCreator( text [, options ] )
+```
       или
   
-**`    QRCreator( text [, options ] )`**
+```js  
+  QRCreator( text [, options ] )
+```
 
 ### Параметры
 
