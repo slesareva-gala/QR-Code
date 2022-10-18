@@ -4,7 +4,7 @@ QRCreator.js — это скрипт на чистом javascript для соз�
 <p align="center">
 <img src="https://github.com/slesareva-gala/forCodePen/blob/master/gif/demo_QRCreator.gif" width="80%"></p>
 
-Протестируй => { [ДЕМО](https://slesareva-gala.github.io/QR-Code/#rus) }
+Протестируйте => { [ДЕМО](https://slesareva-gala.github.io/QR-Code/#rus) }
 
 ## Установка
 1. Скопируйте файл QRCreator.js
@@ -69,9 +69,9 @@ document.getElementById('qrcode2').append( 'QR-код № 2: ', content(qrcode2)
 ## Синтаксис
 
       **window.QRCreator(text[,options])**
-
+  
       или
-
+  
       **QRCreator(text[,options])**
 
 ### Параметры
