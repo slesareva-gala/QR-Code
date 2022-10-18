@@ -74,15 +74,11 @@ document.getElementById('qrcode2').append( 'QR-код № 2: ', content(qrcode2)
 <br>
 <h2>СИНТАКСИС</h2>
 
-```js
-  window.QRCreator( text [, options ] )
-```
+__<p>`window`.QRCreator( `text` [`, options` ] )</p>__
 
 или
 
-```js
-  QRCreator( text [, options ] )
-```
+__<p>QRCreator( `text` [`, options` ] )</p>__
 
 ### Параметры
 
@@ -133,37 +129,27 @@ __options__<br>Объект, содержащий свойства со знач
 
 ### 2.2. Методы `qrcode`
 
-```js
-qrcode.format = newFormat
-```
+__<p>`qrcode`.format = newFormat</p>__
 
 При изменении текущего формата изображения `qrcode.format` на новое значение `newFormat` происходит переформирование изображения.
 >Процесс может вызвать ошибку:<br> `qrcode.error === "format"`.
 
-  ***qrcode.download(filename, format)***
+<br>__<p>`qrcode`.download(`filename`, `format`)</p>__ Вызывает скачивание файла с именем `filename` в формате `format`
 
-     Вызывает скачивание файла с именем filename в формате format
+Если параметр `filename` не задан или `filename === ''`, то `filename` примает значение по умолчанию:
+ - `'qrcode.png'` при `qrcode.format === 'PNG'`
+ - `'qrcode.svg'` при `qrcode.format === 'SVG'`
+ - `'qrcode.html'` при `qrcode.format === 'HTML'`
 
-        Если _filename === ""_,
-        то
-        - при `qrcode.format === 'PNG'`  уставливается `filename = 'qrcode.png'`
-        - при `qrcode.format === 'SVG'`  уставливается `filename = 'qrcode.svg'`
-        - при `qrcode.format === 'HTML'` уставливается `filename = 'qrcode.html'`
+>Если параметр `format` не задан, то приниматся текущее значение `qrcode.format`.
 
-        Если format не задан, то приниматся текущее значение qrcode.format.
-        Если format указан, то до вывода переформировывается изображение ( соответствует методу `qrcode.format = format`).
+>Если параметр `format` указан, то до вывода изображение переформировывается  ( соответствует методу `qrcode.format = format`).
 
-        *Примечание*
-        Если при переформировании изображения произошла ошибка `qrcode.error !== ""` или задан формат 'NONE' и, соотвтественно, отсутствует результат `qrcode.result===""`, то скачиваение файла не вызывается.
+>Если при переформировании изображения произошла ошибка `qrcode.error !== ""` или задан формат `qrcode.format === 'NONE'` и, соответственно, отсутствует результат `qrcode.result === ''`, то запрос на скачиваение файла не выполняется.
 
-  ***qrcode.clearError()***
+<br>__<p>`qrcode`.clearError()</p>__ Очистка сообщения об ошибке qrcode.error и qrcode.errorSubcode
 
-        Очистка сообщения об ошибке qrcode.error и qrcode.errorSubcode
-
-        *Примечание*
-        При наличии ошибок формирования изображения, методы qrcode:
-        `qrcode.format = newFormat` и `qrcode.download(filename, format)`
-        не работают, пока сообщение не будет обработано и (или) очищено `qrcode.clearError()`.
+>При наличии ошибок формирования изображения, методы: `qrcode.format = newFormat` и `qrcode.download(filename, format)` не работают, пока сообщение не будет обработано и (или) очищено `qrcode.clearError()`
 
 ### 2.3. Типы и подкоды ошибок
 
