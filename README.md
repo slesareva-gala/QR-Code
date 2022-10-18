@@ -10,7 +10,8 @@ QRCreator.js — это скрипт на чистом javascript для соз�
 <br>
 <h2>ПОДКЛЮЧЕНИЕ</h2>
 
-  1. Скопируйте файл [QRCreator.js](https://github.com/slesareva-gala/QR-Code/blob/main/docs/js/QRCreator.js)<br>
+  1. Сохраните файл [QRCreator.js](https://raw.githubusercontent.com/slesareva-gala/QR-Code/main/docs/js/QRCreator.js)
+  >По ссылке страница перенаправляется на содержимое файла.<br>Нажмите правую кнопку мыши (или сочетание клавиш `Ctrl`+`S` / `CMD`+`S` ) и выберите `Сохранить как`<br>
   2. В файле `html` в тег `<head>` вставьте тег `<script>` с указанием ссылки на файл `QRCreator.js`<br>
   `<script src="QRCreator.js" defer><script/>`
 
