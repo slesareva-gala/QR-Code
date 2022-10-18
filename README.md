@@ -133,10 +133,12 @@ __options__<br>Объект, содержащий свойства со знач
 
 ### 2.2. Методы `qrcode`
 
-   ***qrcode.format = newFormat***
+```js
+qrcode.format = newFormat
+```
 
-     При изменении текущего формата изображения qrcode.format на новое значение newFormat происходит переформирование изображения.
-     Процесс может вызвать ошибку: qrcode.error === "format".
+При изменении текущего формата изображения `qrcode.format` на новое значение `newFormat` происходит переформирование изображения.
+>Процесс может вызвать ошибку:<br> `qrcode.error === "format"`.
 
   ***qrcode.download(filename, format)***
 
