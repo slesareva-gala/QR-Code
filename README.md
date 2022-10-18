@@ -1,15 +1,16 @@
 <h1 align="center">QRCreator.js</h1>
-QRCreator.js — это скрипт на чистом javascript для создания QR-кода  
-
+QRCreator.js — это скрипт на чистом javascript для создания QR-кода
+<br>
+<br>
 <p align="center">
-<img src="https://github.com/slesareva-gala/forCodePen/blob/master/gif/demo_QRCreator.gif" width="80%"></p>
-
+<img src="https://github.com/slesareva-gala/forCodePen/blob/master/gif/demo_QRCreator.gif" width="80%"></p>  
 Протестируйте => ( [ДЕМО](https://slesareva-gala.github.io/QR-Code/#rus) }
-
+<br>
+<br>
 <h2>ПОДКЛЮЧЕНИЕ</h2>
 
   1. Скопируйте файл QRCreator.js<br />
-  2. В файле html в тег <head> вставьте тег <script> с указанием ссылки на файл QRCreator.js<br />  
+  2. В файле html в тег <head> вставьте тег <script> с указанием ссылки на файл QRCreator.js  
   `<script src="QRCreator.js" defer></script>`
 
 ### Пример подключения
@@ -65,12 +66,13 @@ document.getElementById('qrcode1').append( 'QR-код № 1: ', content(qrcode1)
 document.getElementById('qrcode2').append( 'QR-код № 2: ', content(qrcode2));
 ```
 
+ <br> 
 <h2>СИНТАКСИС</h2>
 
 ```js
   window.QRCreator( text [, options ] )
 ```
-      или
+или
   
 ```js  
   QRCreator( text [, options ] )
@@ -79,19 +81,23 @@ document.getElementById('qrcode2').append( 'QR-код № 2: ', content(qrcode2)
 ### Параметры
 
 **text**  
-    Кодируемая текстовая строка UTF-8
+    Кодируемая текстовая строка UTF-8.
 
 **options**  
-    Объект, содержащий свойства со значениями параметров генерации QR-кода,
-        по умолчанию:  
+    Объект, содержащий свойства со значениями параметров генерации QR-кода,  
+    по умолчанию:  
     `{mode: -1,  eccl: 0, version: -1, mask: -1, format: 'PNG', modsize: -1, margin: -1}`
 
 ### Возвращаемое значение
-    Объект qrcode, описывающий результат генерации QR-кода
+Объект **qrcode**, описывающий результат генерации QR-кода.
 
+<br>  
 <h2>ОПИСАНИЕ</h2>
-### 1. Свойство options
-#### 1.1. Основные свойства options, содержащие значения параметров формирования матрицы QR-code
+  
+### 1. Свойство options  
+  
+#### 1.1. Основные свойства options, содержащие значения параметров формирования матрицы QR-code  
+  
 | свойство | значение | содержание |
 |:----:|:----:|:----------|
 | ***mode*** | целое число из:  -1, 1, 2, 4  |  метод кодирования:  1 -числовой, 2-буквенно-цифровой, 4-октетный,  если не указан или -1, то выбирается допустимый метод |
@@ -99,15 +105,16 @@ document.getElementById('qrcode2').append( 'QR-код № 2: ', content(qrcode2)
 | ***version*** | целое число:  -1 или от 1 до 40 | версия, если не указана или -1,  то выбирается наименьшая возможная версия |
 | ***mask*** | целое число:  -1 или от 0 до 7 | шаблон маски, если не указан или -1,  то выбирается лучшая маска |
 
-#### 1.2. Дополнительные свойства options, содержащие значения параметров формирования изображения
+#### 1.2. Дополнительные свойства options, содержащие значения параметров формирования изображения  
 | свойство | значение | содержание |
 |:----:|:----:|:----------|
   ***format***    регистронезависимая   >строка, одна из:  'PNG', 'SVG','HTML'  или 'NONE' | формат результата, если не то указан,    результат выводится в формате 'PNG'    при задании значения 'NONE' - результат не формируется |
 | ***modsize*** |  целое число    -1 или от 1 | размер модуля modsize x modsize,   если не указан или -1, то 4 |
 | ***margin*** |  целое число     от 0 | размер свободной зоны в модулях,   если не указан, то 4 модуля |
 
-### 2. Возвращаемый объект qrcode
-#### 2.1 Свойства qrcode
+### 2. Возвращаемый объект qrcode  
+  
+#### 2.1. Свойства qrcode  
 | свойство | значение | содержание |
 |:----:|:----:|:----------|
 | ***text*** | заданное | исходный текст |
@@ -119,7 +126,7 @@ document.getElementById('qrcode2').append( 'QR-код № 2: ', content(qrcode2)
 | ***error*** | имя параметра    или '' | имя параметра, вызвавшего ошибку    или при отстутствии ошибок |
 | ***errorSubcode*** | строка    с целочисленным    цифроовым кодом   или '' | код, поясняющий ошибку       при отстутствии ошибок |
 
-### 2.2. Методы qrcode
+### 2.2. Методы qrcode  
 
    ***qrcode.format = newFormat***
 
@@ -151,7 +158,7 @@ document.getElementById('qrcode2').append( 'QR-код № 2: ', content(qrcode2)
         `qrcode.format = newFormat` и `qrcode.download(filename, format)`
         не работают, пока сообщение не будет обработано и (или) очищено `qrcode.clearError()`.
 
-### 2.3. Типы и подкоды ошибок
+### 2.3. Типы и подкоды ошибок  
 
 | error | errorSubcode | содержание |
 |:----:|:----:|:----------|
@@ -172,12 +179,15 @@ document.getElementById('qrcode2').append( 'QR-код № 2: ', content(qrcode2)
 
 Данная таблица с содержанием на русском и английском языках приведена в .\docs\db\lang.json свойтво "qrcreator_error_message".
 
+<br>
 <h2>ЛИЦЕНЗИЯ</h2>
 MIT License. Код может быть использован для любых целей.
 
+<br>
 <h2>СОВМЕСТИМОСТЬ С БРАУЗЕРАМИ</h2>
 Chrome (v.106), Firefox (v.105), Яндекс.Браузер (v.22), Brave (v.1.44), Microsoft Edge (v.106)
 
+<br>
 <h2>ПОЛЕЗНЫЕ ССЫЛКИ</h2>
 _Первоисточик: [Кан Сонхун](https://github.com/shesek/qruri/blob/master/index.js)_<br />
 __***Сокровище:***__ [QR Code Tutorial](https://www.thonky.com/qr-code-tutorial/introduction)<br />
