@@ -1,6 +1,5 @@
 <h1 align="center">QRCreator.js</h1>
 QRCreator.js — это скрипт на чистом javascript для создания QR-кода.  
-___________
 
 <p align="center">
 <img src="https://github.com/slesareva-gala/forCodePen/blob/master/gif/demo_QRCreator.gif" width="80%"></p>
