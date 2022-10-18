@@ -3,7 +3,7 @@ QRCreator.js — это скрипт на чистом javascript для соз�
 
 <p align="center">
 <img src="https://github.com/slesareva-gala/forCodePen/blob/master/gif/demo_QRCreator.gif" width="80%"></p>
-Протестируйте => { [ДЕМО](https://slesareva-gala.github.io/QR-Code) }
+Протестируйте => { [ДЕМО](https://slesareva-gala.github.io/QR-Code](https://slesareva-gala.github.io/QR-Code/#rus) }
 <h2> Установка </h2>
 1. Скопируйте файл QRCreator.js
 2. В файле html в тег <head> вставьте тег <script> с указанием ссылки на файл QRCreator.js<br />
