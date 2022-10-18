@@ -69,11 +69,11 @@ document.getElementById('qrcode2').append( 'QR-код № 2: ', content(qrcode2)
 
 <h2>СИНТАКСИС</h2>
 
-      `window.QRCreator( text [, options ] )`
+      ``` window.QRCreator( text [, options ] ) ```
   
       или
   
-      `QRCreator( text [, options ] )1
+      ``` QRCreator( text [, options ] ) ```
 
 ### Параметры
 
