@@ -6,10 +6,10 @@ QRCreator.js — это скрипт на чистом javascript для соз�
 
 Протестируйте => { [ДЕМО](https://slesareva-gala.github.io/QR-Code/#rus) }
 
-## Установка
+<h2> Установка </h2>
 1. Скопируйте файл QRCreator.js
-2. В файле html в тег <head> вставьте тег <script> с указанием ссылки на файл QRCreator.js
- `<script src="QRCreator.js" defer></script>`
+2. В файле html в тег <head> вставьте тег <script> с указанием ссылки на файл QRCreator.js\
+  `<script src="QRCreator.js" defer></script>`
 
 ### Пример подключения
 ```html
@@ -66,7 +66,7 @@ document.getElementById('qrcode1').append( 'QR-код № 1: ', content(qrcode1)
 document.getElementById('qrcode2').append( 'QR-код № 2: ', content(qrcode2));
 ```
 
-## Синтаксис
+<h2> Синтаксис </h2>
 
       **window.QRCreator(text[,options])**
   
