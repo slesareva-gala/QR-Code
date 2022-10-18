@@ -1,5 +1,5 @@
 <h1 align="center">QRCreator.js</h1>
-QRCreator.js — это скрипт на чистом javascript для создания QR-кода.
+QRCreator.js — это скрипт на чистом javascript для создания QR-кода. 
 ____
 
 <p align="center">
