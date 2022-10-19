@@ -56,7 +56,7 @@ div {
   position: relative;
   height: fit-content;
   line-height: 1.4em;
-  padding: 0 .5em;
+  padding: .1em .5em 0 .5em;
   border-radius: 35px;
   border: .2vw solid var(--color-line);
   border-color: var(--color-line);
@@ -305,16 +305,16 @@ header .btn-symbol:active:after {
 }
 
 .main-params .col-0 {
-  width: calc(min(1.6vw, 1.1rem) * 15);
+  width: calc(min(1.6vw, 1.1em) * 18);
 }
 
 .main-params .col-1 {
-  width: calc(min(1.6vw, 1.1rem) * 4);
+  width: calc(min(1.6vw, 1.1em) * 4);
   margin-right: calc(var(--padding-w) / 2);
 }
 
 .main-params .col-2 {
-  width: calc(min(1.6vw, 1.1rem) * 12);
+  width: calc(min(1.6vw, 1.1em) * 12);
   margin-right: calc(var(--padding-w) / 2);
   color: var(--color-open);
   font-weight: 600;
