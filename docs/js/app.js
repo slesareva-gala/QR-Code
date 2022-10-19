@@ -72,7 +72,7 @@ const app = (dictionaryPath) => {
     const site = window.location;
 
     const changeLanguage = (lang) => {
-      const translation = translate('title');
+      const translation = translate('title', lang);
 
       langSelect.value = lang;
 
@@ -238,11 +238,14 @@ const app = (dictionaryPath) => {
   if (dictionaryPath) use(dictionaryPath).then(data => {
     if (data === null) {
       el('.header-lang').classList.add('hide');
-    } else langDictionary = { ...data.lang_dictionary[0], ...data.qrcreator_error_message[0] };
-  });
 
-  // установливаем язык по хешу
-  changeURL(window.location.hash.slice(1));
+    } else {
+      langDictionary = { ...data.lang_dictionary[0], ...data.qrcreator_error_message[0] };
+
+      // установливаем язык по хешу
+      changeURL(window.location.hash.slice(1));
+    }
+  });
 
 }; // END app()
 app('./db/lang.json');
