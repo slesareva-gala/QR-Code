@@ -1,8 +1,8 @@
 {
-  "name": "qr_code_maker",
+  "name": "qr_code_creator",
   "version": "1.0.0",
   "description": "",
-  "main": "qrMaker.js",
+  "main": "QRCreator.js",
   "scripts": {
     "build": "webpack --mode=production",
     "watch": "webpack --watch --mode=development",
