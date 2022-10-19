@@ -41,16 +41,16 @@
       "eng": "error correction level"
     },
     "param-version": {
-      "rus": "версия ( 1 - 40 )",
-      "eng": "version ( 1 - 40 )"
+      "rus": "версия (1-40)",
+      "eng": "version (1-40)"
     },
     "param-mask": {
-      "rus": "шаблон маски ( 0 - 7 )",
-      "eng": "mask pattern ( 0 - 7 )"
+      "rus": "шаблон маски (0-7)",
+      "eng": "mask pattern (0-7)"
     },
     "param-modsize": {
-      "rus": "размер модуля ( n x n )",
-      "eng": "module size  ( n x n )"
+      "rus": "размер модуля",
+      "eng": "module size"
     },
     "param-margin": {
       "rus": "свободная зона в модулях",
