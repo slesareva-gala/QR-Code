@@ -387,7 +387,7 @@ header .btn-symbol:active:after {
 }
 
 .save-as.btn-symbol:after {
-  content: "\1F847";
+  content: "\2B9F";
   margin-left: .6em;
 }
 
