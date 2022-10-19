@@ -305,7 +305,7 @@ header .btn-symbol:active:after {
 }
 
 .main-params .col-0 {
-  width: calc(min(1.6vw, 1.1em) * 18);
+  width: calc(min(1.6vw, 1.1em) * 15);
 }
 
 .main-params .col-1 {
