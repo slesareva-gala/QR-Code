@@ -397,9 +397,9 @@ export class DataQR {
         break;
     }
 
-    // терминатор: контроль переполнения из-за терминатора количества кодовых слов
-    if ((codewordsData.length < maxQtyCodewordsData - 1) || remaining === 8)
-      pack(constQR.MODE_TERMINATOR, 4);
+    // (ISO/IEC 18004, п. 8.4.9) терминатор: не более 4 бит и не более, чем осталось свободных бит
+    const freeBits = 8 * (maxQtyCodewordsData - codewordsData.length) - (8 - remaining);
+    pack(constQR.MODE_TERMINATOR, Math.min(4, freeBits));
 
     // последнее значащее слово
     if (remaining < 8) codewordsData.push(bits);

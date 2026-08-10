@@ -2,7 +2,7 @@
   Генератор QR-кодов
 */
 "use strict";
-import { DataQR } from "./creator/dataQR";
+import { DataQR } from "./creator/DataQr";
 import { controlOptionsCreator } from "./creator/controlOptionsCreator";
 
 /*
@@ -14,7 +14,7 @@ import { controlOptionsCreator } from "./creator/controlOptionsCreator";
      options.mode - метод кодирования: 1 -числовой, 2-буквенно-цифровой, 4-октетный
                если не указан или -1, то выбирается допустимый метод
      options.eccl -  уровень коррекции ошибок: 1(L), 0(M), 3(Q), 2(H)
-               если не указан или -1, то подбор допустимого уровня начиная с 3(Q)
+               если не указан или -1, то подбор допустимого уровня начиная с 2(H)
      options.version - версия: целое число в [1,40]
                если не указан или -1, то выбирается наименьшая возможная версия
      options.mask: - шаблон маски: целое число в [0,7],
