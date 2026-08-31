@@ -69,10 +69,10 @@ export const controlOptionsCreator = (qrcode) => {
 
     // подбор уровня коррекции ошибок для версии
     const ecclVersion = (version, ecclChoice, iStart = 0) => {
+      if (!ecclChoice) return fitLength(version);
+
       // приоритет выбора уровня коррекции ошибок в порядке убывания: 2(H) 3(Q) 0(М) 1(L)
       const ecclPriority = [2, 3, 0, 1];
-
-      if (!ecclChoice) return fitLength(version);
 
       for (let i = iStart; i < 4; ++i) {
         // установка версии и фиксирование информации для построения qr-кода
@@ -119,8 +119,6 @@ export const controlOptionsCreator = (qrcode) => {
     if (qrcode.mask !== -1 && (qrcode.mask < 0 || qrcode.mask > 8 || notInteger(qrcode.mask)))
       throw errorQR('mask', '1');
 
-    // формат изображения
-    if (!(constQR.IMAGE.includes(qrcode.image))) throw errorQR('image', '1');
     // размер модуля n x n, где n > 1
     if (qrcode.modsize === -1) qrcode.modsize = constQR.modsize;
     else if (qrcode.modsize < 1 || notInteger(qrcode.modsize)) throw errorQR('modsize', '1');

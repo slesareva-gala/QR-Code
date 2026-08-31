@@ -2,191 +2,119 @@
 "use strict";
 
 import { constQR, infoVersion } from "../lib/iso";
+import { RENDERERS } from "./renderingQR"
 
 class QRCODE {
+  #error;
+  #errorSubcode;
+  #image;
+  #rendered;
+  #result
+
   constructor(image, options, errorDescription) {
 
     for (const param in options) {
       Object.defineProperty(this, param, { enumerable: true, value: options[param] });
     }
-    for (const param in errorDescription) {
-      Object.defineProperty(this, param, { writable: true, value: errorDescription[param] });
-    }
+
+    this.#error = errorDescription.error;
+    this.#errorSubcode = errorDescription.errorSubcode;
 
     // формат изображения QR-кода
-    Object.defineProperty(this, `_image`, { writable: true, value: '' });
+    this.#image = '';
+    // признак того, что #result построен для текущего значения #image
+    this.#rendered = false;
     // HTML элемент изображения QR-кода в заданом формате или '' в случае ошибки
-    Object.defineProperty(this, `result`, { writable: true, value: '' });
+    this.#result = '';
 
     // формирование изображения QR-кода
     this.image = image;
   }
 
+  get error() { return this.#error }
+  get errorSubcode() { return this.#errorSubcode }
+  get result() { return this.#result }
+
   /*
    * формирование изображения QR-кода
    */
   set image(v) {
-    // формирование изображения QR-кода
-    const makeImage = () => {
+    v = constQR.normalizeImage(v);
 
-      ({
-        // без формирования изображения
-        NONE: () => {
-          this.result = '';
-        },
-        // формирование изображения QR-кода в формате PNG
-        PNG: () => {
-          const matrix = this.matrix, matrixSize = this.matrix.length,
-            modsize = this.modsize, margin = this.margin;
-          const canvasSize = modsize * (matrixSize + 2 * margin),
-            canvas = document.createElement('canvas');
-          let context;
-
-          canvas.width = canvas.height = canvasSize;
-          context = canvas.getContext('2d');
-          if (!context) {
-            this.error = 'image';
-            this.errorSubcode = '2';
-            return;
-          }
-
-          context.fillStyle = '#fff';
-          context.fillRect(0, 0, canvasSize, canvasSize);
-          context.fillStyle = '#000';
-          for (let y = 0; y < matrixSize; ++y) {
-            for (let x = 0; x < matrixSize; ++x) {
-              if (matrix[y][x]) {
-                context.fillRect(modsize * (margin + x),
-                  modsize * (margin + y),
-                  modsize, modsize);
-              }
-            }
-          }
-
-          this.result = canvas;
-        }, // END PNG()
-
-        // формирование изображения QR-кода в формате SVG
-        SVG: () => {
-          const result = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-
-          const matrix = this.matrix, matrixSize = this.matrix.length,
-            modsize = this.modsize, margin = this.margin;
-          const svgSize = modsize * (matrixSize + 2 * margin),
-            svg = [
-              '<style scoped>.bg{fill:#FFF}.fg{fill:#000}</style>',
-              '<rect class="bg" x="0" y="0"',
-              'width="' + svgSize + '" height="' + svgSize + '"/>',
-            ],
-            svgCommon = ' class= "fg"' + ' width="' + modsize + '" height="' + modsize + '"/>';
-
-          result.setAttribute('viewBox', '0 0 ' + svgSize + ' ' + svgSize);
-          result.setAttribute('style', 'shape-rendering:crispEdges');
-
-          let yo = margin * modsize;
-          for (let y = 0; y < matrixSize; ++y) {
-            let xo = margin * modsize;
-            for (let x = 0; x < matrixSize; ++x) {
-              if (matrix[y][x])
-                svg.push('<rect x="' + xo + '" y="' + yo + '"', svgCommon);
-              xo += modsize;
-            }
-            yo += modsize;
-          }
-          result.innerHTML = svg.join('');
-
-          this.result = result;
-        }, // END SVG()
-
-        // формирование изображения QR-кода в формате HTML
-        HTML: () => {
-          const result = document.createElement('div');
-          const matrix = this.matrix, matrixSize = this.matrix.length,
-            modsize = this.modsize, margin = this.margin;
-          const html = ['<table border="0" cellspacing="0" cellpadding="0" style="display:block; border:' +
-            modsize * margin + 'px solid #fff;background:#fff">'];
-
-          for (let y = 0; y < matrixSize; ++y) {
-            html.push('<tr>');
-            for (let x = 0; x < matrixSize; ++x) {
-              html.push('<td style="width:' + modsize + 'px; height:' + modsize + 'px' +
-                (matrix[y][x] ? ';background:#000' : '') + '"></td>');
-            }
-            html.push('</tr>');
-          }
-          result.className = 'qrcode';
-          result.innerHTML = html.join('') + '</table>';
-
-          this.result = result;
-        }, // END HTML()
-
-      }[this.image])();
-
-    }; // END makeImage()
-
-    v = v.trim().toUpperCase();
-    this._image = v;
-    this.result = '';
-
-    if (this.error === 'image') this.clearError();
-    if (!(constQR.IMAGE.includes(v))) {
-      this.error = 'image';
-      this.errorSubcode = '3';
+    // изображение уже построено для этого формата: повторно не рисуем
+    if (v === this.#image && this.#rendered) return;
+    // ошибка предыдущего построения изображения перестала быть актуальной
+    if (this.#error === 'image') {
+      this.#error = '';
+      this.#errorSubcode = '';
     }
 
-    if (!this.error) makeImage();
+    this.#image = v;
+    this.#rendered = false;
+    this.#result = '';
 
+    // ошибка в других параметрах: изображение не строится, сообщение сохраняется
+    if (this.#error) return;
+
+    // не поддерживаемый формат изображения
+    if (!(constQR.IMAGE.includes(v))) {
+      this.#error = 'image';
+      this.#errorSubcode = '1';
+      return
+    }
+
+    try {
+      this.#result = RENDERERS[v](this);
+      this.#rendered = true;
+    } catch (e) {
+      this.#result = '';
+      this.#error = 'image';
+      this.#errorSubcode = (typeof e === 'string') ? e : '2';
+    }
   } // END set image()
-  get image() { return this._image; }
+
+  get image() { return this.#image; }
 
   /*
    * скачать файл QR-кода
    */
   download(filename = '', image = this.image) {
-    let content = '', mimeType = '';
 
-    const perform = (content, mimeType, filename) => {
+    const perform = (content, filename) => {
       const el = document.createElement('a');
-      if (mimeType) mimeType += ',';
-
-      el.setAttribute('href', `${mimeType}${content}`);
+      el.setAttribute('href', content);
       el.setAttribute('download', filename);
       el.click();
     };
 
     this.image = image;
 
-    if (this.result) {
+    if (this.#result) {
+      const mimeType = constQR.MIME[this.image];
+      if (!filename) filename = `qrcode.${constQR.MIME[this.image]}`;
+
+      let content = '';
       switch (this.image) {
         case 'PNG':
-          if (!filename) filename = 'qrcode.png';
-          content = this.result.toDataURL();
+          content = this.#result.toDataURL(mimeType);
+          break;
+        case 'WEBP':
+          content = this.#result.toDataURL(mimeType, 1);
           break;
         case 'SVG':
-          if (!filename) filename = 'qrcode.svg';
           content = `<svg xmlns="http://www.w3.org/2000/svg" ` +
-            `viewBox="${this.result.getAttribute('viewBox')} ">` +
-            `${this.result.innerHTML}</svg>`;
-          content = encodeURIComponent(content);
-          mimeType = `data:image/svg+xml;charset=utf-8`;
+            `viewBox="${this.#result.getAttribute('viewBox')} ">` +
+            `${this.#result.innerHTML}</svg>`;
+          content = `data:${mimeType},${encodeURIComponent(content)}`;
           break;
         case 'HTML':
-          if (!filename) filename = 'qrcode.html';
-          content = encodeURIComponent(this.result.innerHTML);
-          mimeType = `data:text/html;charset=utf-8`;
+          content = `<div style="${this.#result.style.cssText.replace(/(?<=(width|height):\s*)100%/g, '400px')}">${this.#result.innerHTML}</div>`
+          content = `data:${mimeType},${encodeURIComponent(content)}`;
           break;
       }
-      perform(content, mimeType, filename);
+      perform(content, filename);
     }
   } // END download()
-
-  /*
-   * очистка сообщения об ошибке
-   */
-  clearError() {
-    this.error = '';
-    this.errorSubcode = '';
-  } // END clearError()
 
 }  // END class QRCODE
 
@@ -209,7 +137,7 @@ export class DataQR {
     this._version = version;
     this.mask = mask;
     // параметры результата:
-    this.image = image.trim().toUpperCase();
+    this.image = constQR.normalizeImage(image);
     this.modsize = modsize;
     this.margin = margin;
 

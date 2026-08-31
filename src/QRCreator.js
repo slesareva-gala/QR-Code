@@ -2,7 +2,7 @@
   Генератор QR-кодов
 */
 "use strict";
-import { DataQR } from "./creator/DataQr";
+import { DataQR } from "./creator/dataQR";
 import { controlOptionsCreator } from "./creator/controlOptionsCreator";
 
 /*
@@ -22,7 +22,7 @@ import { controlOptionsCreator } from "./creator/controlOptionsCreator";
 
      // - параметры результата:
      options.image: - формат изображения: регистронезависимая строка:
-                одна из 'PNG', 'SVG','HTML' или 'NONE' (не формировать изображение),
+                одна из 'PNG', 'WEBP', 'SVG', 'HTML' или 'NONE' (не формировать изображение),
                 если не указан, то результат выводится в формате 'PNG'
      options.modsize: - размер модуля ( modsize x modsize ): целое число больше 1 ,
                  если не указан или -1, то 4
@@ -37,7 +37,7 @@ import { controlOptionsCreator } from "./creator/controlOptionsCreator";
         mode, eccl, version, mask, image, modsize, margin,
         // массив - матрица QR-кода в 0-белый, 1-черный
         matrix,
-        // HTML изображения QR-кода в заданом формате или '' в случае ошибки
+        // изображение QR-кода в заданом формате или '' в случае ошибки
         // или когда был задан параметр image === 'NONE'
         result,
         // имя параметра, вызвавшего ошибку или '' при отстутствии ошибок

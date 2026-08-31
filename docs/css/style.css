@@ -355,6 +355,11 @@ header .btn-symbol:active:after {
   text-align: center;
 }
 
+#qrcode-output .qrcode {
+  width: fit-content;
+  height: auto;
+}
+
 #qrcode-output canvas {
   width: 100%;
   height: auto;
@@ -367,8 +372,15 @@ header .btn-symbol:active:after {
   width: 25vw;
   flex-flow: row wrap;
   justify-content: space-evenly;
+  row-gap: calc(var(--padding-h) / 2);
   border: .1vw solid transparent;
   padding: var(--padding-h) .2vw calc(var(--padding-h) / 2) .2vw;
+}
+
+#qrcode-save-as .save-as {
+  flex: 0 0 auto;
+  min-width: 45%;
+  text-align: center;
 }
 
 .save-as-title {
@@ -384,6 +396,11 @@ header .btn-symbol:active:after {
 .save-as.btn-symbol {
   background-color: var(--save-as-background);
   background-position: calc(100% - 1.7em) 0, calc(100% - 1.7em) 0, 0 0;
+}
+
+.save-as.btn-symbol.h-btn span {
+  display: inline-block;
+  width: 75%;
 }
 
 .save-as.btn-symbol:after {
@@ -439,5 +456,6 @@ header .btn-symbol:active:after {
 }
 
 .hide {
+
   display: none;
 }

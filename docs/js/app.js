@@ -48,24 +48,16 @@ const app = (dictionaryPath) => {
       elem.classList.add('open');
       setTimeout((elem) => {
         elem.style.transition = 'none';
-      }, 500, elem);
+      }, 300, elem);
 
     } else {
       elem.style.transition = '';
       elem.classList.remove('open');
       setTimeout((elem) => {
         elem.innerHTML = '';
-      }, 500, elem);
+      }, 300, elem);
     }
   }; // END messageError()
-
-  // очистка и закрытие сообщения об ошибке
-  const clearError = () => {
-    if (qrcode && qrcode.error) {
-      qrcode.clearError();
-      messageError();
-    }
-  };
 
   // смена URL для смены языка по хешу
   const changeURL = (lang) => {
@@ -98,46 +90,47 @@ const app = (dictionaryPath) => {
 
   // выбор авто vs ввод параметров генерации QR-кода
   const vsParams = (e) => {
-    const el = e.target;
+    const elem = e.target;
 
-    if (el.classList.contains('col-1')) {
+    if (elem.classList.contains('col-1')) {
       // изменяем кнопку
-      const vs = el.classList.contains('lang-vs1') ? 'vs2' : 'vs1';
+      const vs = elem.classList.contains('lang-vs1') ? 'vs2' : 'vs1';
       const translation = translate(vs);
 
-      el.classList.remove('lang-vs1', 'lang-vs2');
-      el.classList.add('lang-' + vs);
+      elem.classList.remove('lang-vs1', 'lang-vs2');
+      elem.classList.add('lang-' + vs);
 
-      if (translation) el.textContent = translation;
-      else el.textContent = vs === 'vs1' ? 'авто' : 'ввод';
+      if (translation) elem.textContent = translation;
+      else elem.textContent = vs === 'vs1' ? 'авто' : 'ввод';
 
       // открываем / закрываем ввод
-      el.parentNode.children[2].classList.toggle('hide');
+      elem.parentNode.children[2].classList.toggle('hide');
     }
   };  // END vsParams()
 
   // ввод параметров генерации QR-кода
   const inputParams = (e) => {
-    const el = e.target, elP = el.parentNode;
+    const elem = e.target, elemP = elem.parentNode;
 
-    if (el.classList.contains('col-2')) {
+    if (elem.classList.contains('col-2')) {
       // валидация ввода: только цифры
-      if (elP === elQR.version || elP === elQR.modsize) {
-        el.value = el.value.replace(/((^0)|(\D))+/g, "").slice(0, 2);
-      } else if (elP === elQR.mask) {
-        el.value = el.value.replace(/[^01234567]+/g, "").slice(0, 1);
-      } else if (elP === elQR.margin) {
-        el.value = el.value.replace(/\D+/g, "").slice(0, 2);
+      if (elemP === elQR.version || elemP === elQR.modsize) {
+        elem.value = elem.value.replace(/((^0)|(\D))+/g, "").slice(0, 2);
+      } else if (elemP === elQR.mask) {
+        elem.value = elem.value.replace(/[^01234567]+/g, "").slice(0, 1);
+      } else if (elemP === elQR.margin) {
+        elem.value = elem.value.replace(/\D+/g, "").slice(0, 2);
       }
     }
   };  // END inputParams()
 
   // генерация / очистка QR-кода
   const generation = (e) => {
+    const btn = e.target;
     const qrCodeOutput = el('#qrcode-output');
 
     const changeStatus = (key, qr = {}) => {
-      const btn = e.target, style = document.documentElement.style;
+      const style = document.documentElement.style;
       const cancel = key === 'cancel';
       const translation = translate('btn-' + key);
 
@@ -173,24 +166,18 @@ const app = (dictionaryPath) => {
       style.setProperty('--save-as-background', cancel ? 'var(--bgcolor-open)' : 'var(--bgcolor-api)');
     };
 
-
-    if (qrcode && (qrcode.result || qrcode.error === 'image')) {
-      // очищаем ошибки при переходе к вводу параметоров
-      if (qrcode.error) {
-        qrcode.clearError();
-        messageError('');
-      }
-
+    if (btn.classList.contains('lang-btn-cancel')) {
       // очищаем блок с QR-кодом
       qrcode = null;
       qrCodeOutput.innerHTML = "";
       qrCodeOutput.classList.add('empty');
+      messageError();
       changeStatus('create');
 
     } else {
       // генерация QR-кода
-      const auto = el => el.children[1].classList.contains('lang-vs1');
-      const value = el => +el.children[2].value;
+      const auto = elem => elem.children[1].classList.contains('lang-vs1');
+      const value = elem => +elem.children[2].value;
 
       qrcode = window.QRCreator(elQR.text.value, {
         version: auto(elQR.version) ? -1 : Math.max(value(elQR.version), 1),
@@ -198,7 +185,8 @@ const app = (dictionaryPath) => {
         eccl: auto(elQR.eccl) ? -1 : value(elQR.eccl),
         mask: auto(elQR.mask) ? -1 : value(elQR.mask),
         modsize: auto(elQR.modsize) ? -1 : Math.max(value(elQR.modsize), 1),
-        margin: auto(elQR.margin) ? -1 : value(elQR.margin)
+        margin: auto(elQR.margin) ? -1 : value(elQR.margin),
+        image: 'SVG'
       });
       messageError(qrcode.error ? qrcode.error + '-' + qrcode.errorSubcode : '');
 
@@ -206,25 +194,26 @@ const app = (dictionaryPath) => {
         qrCodeOutput.classList.remove('empty');
         qrCodeOutput.append(qrcode.result);
         changeStatus('cancel', qrcode);
-      }
+      } else if (qrcode.matrix.length) changeStatus('cancel', qrcode);
     }
   }; // END generation()
 
   // сохранить
   const saveAs = (e) => {
-    const el = e.target;
-    if (el.classList.contains('save-as')) {
-      const image = el.dataset.image;
+    const elem = e.target.closest('.save-as');
 
-      qrcode.download('proba.' + image, image);
+    if (elem && qrcode) {
+      const image = elem.dataset.image;
+
+      qrcode.download('testQR.' + image, image);
       messageError(qrcode.error ? qrcode.error + '-' + qrcode.errorSubcode : '');
     }
   };  // END saveAs()
 
   // выбор языка
   langSelect.addEventListener('change', () => changeURL(langSelect.value));
-  // очистка и закрытие сообщения об ошибке
-  el('.error-message').addEventListener('click', clearError);
+  // закрытие сообщения об ошибке
+  el('.error-message').addEventListener('click', () => messageError());
   // выбор авто vs ввод параметров генерации QR-кода
   el('.main-params').addEventListener('click', vsParams);
   // ввод параметров генерации QR-кода

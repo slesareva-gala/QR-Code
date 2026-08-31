@@ -84,11 +84,37 @@ export const constQR = {
   },
 
   /* форматы изображений */
-  IMAGE: ['PNG', 'SVG', 'HTML', 'NONE'],
+  IMAGE: ['PNG', 'WEBP', 'SVG', 'HTML', 'NONE'],
+  /* синонимы форматов, приводимые к каноническому имени */
+  IMAGE_ALIAS: { 'IMAGE/PNG': 'PNG', 'IMAGE/WEBP': 'WEBP', 'IMAGE/SVG+XML': 'SVG', 'TEXT/HTML': 'HTML' },
+  /*
+   * приведение значения формата к каноническому виду:
+   * убираются пробелы, регистр не важен, синонимы заменяются
+   */
+  normalizeImage: v => {
+    v = String(v === undefined || v === null ? '' : v).replaceAll(' ', '').toUpperCase();
+    return constQR.IMAGE_ALIAS[v] || v;
+  },
+  /* MIME-типы и расширения файлов по форматам */
+  MIME: {
+    PNG: 'image/png', WEBP: 'image/webp',
+    SVG: 'image/svg+xml;charset=utf-8', HTML: 'text/html;charset=utf-8'
+  },
+  EXTENSION: { PNG: 'png', WEBP: 'webp', SVG: 'svg', HTML: 'html' },
+  /* растровые форматы, формируемые через canvas */
+  isRaster: image => image === 'PNG' || image === 'WEBP',
   /* размер модуля */
   modsize: 4,
   /* размер свободной зоны в модулях */
-  margin: 4
+  margin: 4,
+  /*
+   * предельная сторона canvas в пикселях.
+   * Браузеры молча отдают пустое полотно при превышении собственного лимита
+   * (в Chrome и Firefox он равен 32767 пикселям по стороне при ограничении
+   * на площадь), поэтому размер проверяется заранее.
+  */
+  MAX_CANVAS_SIDE: 16384,
+  MAX_CANVAS_AREA: 16384 * 16384
 };
 
 // формирование журналов QR-кода для поля Галуа 256:
